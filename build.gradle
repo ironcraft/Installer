@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+group = 'fr.ironcraft'
+archivesBaseName = 'installer'
+version = appVersion
+sourceCompatibility = 1.6
+
+// Jenkins support
+if (System.env.BUILD_NUMBER != null)  version = "$version.$System.env.BUILD_NUMBER"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
