@@ -1,21 +1,39 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'application'
 
 group = 'fr.ironcraft'
 archivesBaseName = 'installer'
 version = appVersion
+
 sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+mainClassName = 'fr.ironcraft.kubithon.launcher.LauncherFrame'
+
+compileJava.options.encoding = 'ISO-8859-1'
 
 // Jenkins support
-if (System.env.BUILD_NUMBER != null)  version = "$version.$System.env.BUILD_NUMBER"
+if (System.env.BUILD_NUMBER != null)
+{
+    version = "$version.$System.env.BUILD_NUMBER"
+}
 
 repositories {
     mavenCentral()
+
+    maven {
+        url 'http://litarvan.github.io/maven/'
+    }
 }
 
 dependencies {
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
 
+    compile group: 'fr.litarvan', name: 'openlauncherlib', version: '3.0.3-BETA'
+    compile group: 'fr.theshark34.swinger', name: 'swinger', version: '1.0.1-BETA'
+
+    compile group: 'org.json', name: 'json', version: '20160810'
 }
