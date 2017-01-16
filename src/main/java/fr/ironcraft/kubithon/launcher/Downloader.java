@@ -1,6 +1,7 @@
 package fr.ironcraft.kubithon.launcher;
 
 import fr.theshark34.openlauncherlib.minecraft.util.GameDirGenerator;
+import fr.theshark34.openlauncherlib.util.explorer.FilesUtil;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,11 +13,12 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
 public class Downloader
 {
-    public static final String ENDPOINT = "https://i.blueslime.fr/";
+    public static final String ENDPOINT = "http://91.121.165.194/kubithon/";
     public static final String FILES_URL = ENDPOINT + "md5sum";
     public static final File FOLDER = GameDirGenerator.createGameDir("kubithon");
     public static final File MINECRAFT_FOLDER = GameDirGenerator.createGameDir("minecraft");
@@ -32,7 +34,23 @@ public class Downloader
 
     public void start() throws IOException
     {
+        File mods = new File(FOLDER, "mods");
+
         loadFiles();
+
+        File[] files = mods.listFiles();
+
+        if (files != null)
+        {
+            for (File file : files)
+            {
+                if (!this.files.containsKey("./mods/" + file.getName()))
+                {
+                    FileUtils.forceDelete(file);
+                }
+            }
+        }
+
         check();
         download();
     }
@@ -44,8 +62,8 @@ public class Downloader
 
         for (String file : files)
         {
-            String[] split = file.split(" ");
-            this.files.put(split[0], split[1]);
+            String[] split = file.replace("  ", " ").split(" ");
+            this.files.put(split[1], split[0]);
         }
     }
 
