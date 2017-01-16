@@ -16,7 +16,7 @@ import org.apache.commons.io.IOUtils;
 
 public class Downloader
 {
-    public static final String ENDPOINT = "https://i.blueslime.fr/";
+    public static final String ENDPOINT = "http://91.121.165.194/kubithon/";
     public static final String FILES_URL = ENDPOINT + "md5sum";
     public static final File FOLDER = GameDirGenerator.createGameDir("kubithon");
     public static final File MINECRAFT_FOLDER = GameDirGenerator.createGameDir("minecraft");
