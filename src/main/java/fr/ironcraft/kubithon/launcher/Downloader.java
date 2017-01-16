@@ -44,8 +44,8 @@ public class Downloader
 
         for (String file : files)
         {
-            String[] split = file.split(" ");
-            this.files.put(split[0], split[1]);
+            String[] split = file.split("  ");
+            this.files.put(split[1], split[0]);
         }
     }
 
