@@ -98,7 +98,7 @@ public class LauncherPanel extends JPanel
 
                             if (!profiles.has("Kubithon"))
                             {
-                                JSONObject kubithon = new JSONObject("{ \"name\": \"Kubithon\", \"gameDir\": \"" + Downloader.FOLDER.getAbsolutePath() + "\", \"lastVersionId\": \"Kubithon\", \"useHopperCrashService\": false }");
+                                JSONObject kubithon = new JSONObject("{ \"name\": \"Kubithon\", \"gameDir\": \"" + Downloader.FOLDER.getAbsolutePath().replace("\\", "\\\\") + "\", \"lastVersionId\": \"Kubithon\", \"useHopperCrashService\": false }");
                                 profiles.put("Kubithon", kubithon);
 
                                 object.put("selectedProfile", "Kubithon");
